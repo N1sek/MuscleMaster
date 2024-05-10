@@ -1,0 +1,31 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:21:p, comp button1:::p:234:p}, seq l {space :::p, comp label1:::p:94:p, space s:::p, comp counterLabel:::p:175:p}}, space ::572:x}}"
+			"$verticalGroup": "par l {seq l {space :p:20:p, par b {comp label1::b:p:56:p, comp counterLabel::b:p:56:p}, space :p:85:p, comp button1:::p:139:p, space ::329:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "CLICK"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button1MouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Clicks:"
+				"font": new java.awt.Font( "JetBrains Mono", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "counterLabel"
+				"text": "0"
+				"font": new java.awt.Font( "JetBrains Mono", 0, 18 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 865, 630 )
+		} )
+	}
+}

@@ -1,3 +1,5 @@
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class VentanaPrincipal {
@@ -8,6 +10,12 @@ public class VentanaPrincipal {
         button1.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "Hola Mundo");
         });
+    }
+
+    private void button1MouseClicked(MouseEvent e) {
+        int counter = Integer.parseInt(counterLabel.getText());
+        counter++;
+        counterLabel.setText(String.valueOf(counter));
     }
 
     public static void main(String[] args) {
