@@ -51,11 +51,7 @@ public class VentanaPrincipal extends JPanel {
     }
 
     private void menuBarItemBugMouseClicked(MouseEvent e) {
-        try {
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://github.com/N1sek/MuscleMaster/issues"));
-        } catch (java.io.IOException err) {
-            System.out.println(err);
-        }
+        // TODO add your code here
     }
 
     private void initComponents() {
