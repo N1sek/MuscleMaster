@@ -61,9 +61,11 @@ public class VentanaPrincipal extends JPanel {
         menuItem2 = new JMenuItem();
 
         //======== this ========
+        setBackground(Color.white);
 
         //---- clickerBtn ----
-        clickerBtn.setText("CLICK");
+        clickerBtn.setText("Press Banca");
+        clickerBtn.setIcon(new ImageIcon(getClass().getResource("/assets/press1.png")));
         clickerBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -72,7 +74,7 @@ public class VentanaPrincipal extends JPanel {
         });
 
         //---- clicksLbl ----
-        clicksLbl.setText("Clicks:");
+        clicksLbl.setText("REPS:");
         clicksLbl.setFont(new Font("JetBrains Mono", Font.PLAIN, 20));
 
         //---- counterLbl ----
@@ -111,7 +113,7 @@ public class VentanaPrincipal extends JPanel {
                         .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                            .addGap(37, 37, 37)
+                            .addGap(33, 33, 33)
                             .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(768, Short.MAX_VALUE))
         );
@@ -119,10 +121,11 @@ public class VentanaPrincipal extends JPanel {
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addGap(26, 26, 26)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                         .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-                    .addGap(83, 83, 83)
+                    .addGap(57, 57, 57)
                     .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(316, Short.MAX_VALUE))
         );

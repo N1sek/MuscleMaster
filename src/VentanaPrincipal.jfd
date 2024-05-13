@@ -4,13 +4,15 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq l {space :p:53:p, par l {comp button1:::p:234:p, seq {comp clicksLbl:::p:94:p, space :p:37:p, comp counterLabel:::p:95:p}}, space ::768:x}}"
-			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :p:83:p, comp button1:::p:139:p, space ::316:x}}"
+			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq l {space :p:53:p, par l {comp button1:::p:234:p, seq {comp clicksLbl:::p:94:p, space :p:33:p, comp counterLabel:::p:95:p}}, space ::768:x}}"
+			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :p:57:p, comp button1:::p:139:p, space ::316:x}}"
 		} ) {
 			name: "this"
+			"background": new java.awt.Color( 255, 255, 255, 255 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
-				"text": "CLICK"
+				"text": "Press Banca"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/assets/press1.png" )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clickerBtn"
 				}
@@ -18,7 +20,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "clicksLbl"
-				"text": "Clicks:"
+				"text": "REPS:"
 				"font": new java.awt.Font( "JetBrains Mono", 0, 20 )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clicksLbl"
