@@ -9,18 +9,45 @@ import javax.swing.GroupLayout;
 public class VentanaPrincipal extends JPanel {
     Click click = new Click();
     double realValue;
+    Timer timer;
+    boolean timerOn = false;
+    int timerSpeed;
 
     public VentanaPrincipal() {
         initComponents();
         click.setClickValue(1);
-        click.setClickMultiplier(1.5);
+        click.setClickMultiplier(1);
+        click.setCps(0);
+    }
+
+    public void setTimer() {
+         timer = new Timer(timerSpeed, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                realValue += click.getClickValue();
+                counterLbl.setText(""+(int) realValue);
+            }
+        });
+    }
+
+    public void timerUpdate() {
+        if (click.getCps() != 0) {
+            if (timerOn == false) {
+                timerOn = true;
+            } else if (timerOn == true) {
+                timer.stop();
+            }
+            timerSpeed = (int) Math.round(1 / click.getCps() * 1000);
+            setTimer();
+            timer.start();
+        }
     }
 
     private void button1MouseClicked(MouseEvent e) {
-        int counter = Integer.parseInt(counterLbl.getText());
         realValue += click.click();
-        counter = (int) realValue;
+        int counter = (int) realValue;
         counterLbl.setText(String.valueOf(counter));
+        timerUpdate();
     }
 
     private void initComponents() {
