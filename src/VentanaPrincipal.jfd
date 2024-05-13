@@ -8,11 +8,16 @@ new FormModel {
 			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :p:57:p, comp button1:::p:139:p, space ::316:x}}"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 255, 255, 255, 255 )
+			"background": new java.awt.Color( 55, 81, 132, 255 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "Press Banca"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/assets/press1.png" )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"borderPainted": false
+				"focusPainted": false
+				"contentAreaFilled": false
+				"pressedIcon": new com.jformdesigner.model.SwingIcon( 0, "/assets/press2.png" )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clickerBtn"
 				}

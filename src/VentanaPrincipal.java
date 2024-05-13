@@ -61,11 +61,16 @@ public class VentanaPrincipal extends JPanel {
         menuItem2 = new JMenuItem();
 
         //======== this ========
-        setBackground(Color.white);
+        setBackground(new Color(0x375184));
 
         //---- clickerBtn ----
         clickerBtn.setText("Press Banca");
         clickerBtn.setIcon(new ImageIcon(getClass().getResource("/assets/press1.png")));
+        clickerBtn.setBorder(null);
+        clickerBtn.setBorderPainted(false);
+        clickerBtn.setFocusPainted(false);
+        clickerBtn.setContentAreaFilled(false);
+        clickerBtn.setPressedIcon(new ImageIcon(getClass().getResource("/assets/press2.png")));
         clickerBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
