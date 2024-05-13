@@ -8,16 +8,18 @@ import javax.swing.GroupLayout;
  */
 public class VentanaPrincipal extends JPanel {
     Click click = new Click();
+    double realValue;
 
     public VentanaPrincipal() {
         initComponents();
-        click.setClickValue(4);
+        click.setClickValue(1);
         click.setClickMultiplier(1.5);
     }
 
     private void button1MouseClicked(MouseEvent e) {
         int counter = Integer.parseInt(counterLbl.getText());
-        counter += click.click();
+        realValue += click.click();
+        counter = (int) realValue;
         counterLbl.setText(String.valueOf(counter));
     }
 
