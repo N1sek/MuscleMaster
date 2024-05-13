@@ -4,20 +4,20 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq l {space :p:53:p, par l {comp button1:::p:234:p, seq {comp clicksLbl:::p:94:p, space :p:33:p, comp counterLabel:::p:95:p}}, space ::768:x}}"
-			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :p:57:p, comp button1:::p:139:p, space ::316:x}}"
+			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq {par l {seq {space :p:53:p, comp clicksLbl:::p:94:p, space :p:33:p, comp counterLabel:::p:95:p}, seq l {space :::p, comp button1:::p:296:p}}, space ::753:x}}"
+			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space s:::p, comp button1:::p:191:p, space ::303:x}}"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 55, 81, 132, 255 )
+			"background": new java.awt.Color( 48, 60, 83, 255 )
+			"font": new java.awt.Font( "JetBrains Mono", 0, 15 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
-				"text": "Press Banca"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/assets/press1.png" )
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				"borderPainted": false
 				"focusPainted": false
-				"contentAreaFilled": false
 				"pressedIcon": new com.jformdesigner.model.SwingIcon( 0, "/assets/press2.png" )
+				"contentAreaFilled": false
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clickerBtn"
 				}
@@ -25,8 +25,9 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "clicksLbl"
-				"text": "REPS:"
+				"text": "REPES:"
 				"font": new java.awt.Font( "JetBrains Mono", 0, 20 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clicksLbl"
 				}
@@ -35,6 +36,7 @@ new FormModel {
 				name: "counterLabel"
 				"text": "0"
 				"font": new java.awt.Font( "JetBrains Mono", 0, 18 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "counterLbl"
 				}
@@ -42,8 +44,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menuBarItem"
-					"text": "File"
+					name: "menuBarItemFile"
+					"text": "Archivo"
 					"font": new java.awt.Font( "JetBrains Mono", 0, 15 )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem1"
@@ -55,6 +57,20 @@ new FormModel {
 						"text": "Cargar"
 						"font": new java.awt.Font( "JetBrains Mono", 0, 14 )
 					} )
+				} )
+				add( new FormComponent( "javax.swing.JMenuItem" ) {
+					name: "menuBarItemAchievements"
+					"text": "Logros"
+					"font": new java.awt.Font( "JetBrains Mono", 0, 15 )
+					"maximumSize": new java.awt.Dimension( 75, 32767 )
+					"minimumSize": new java.awt.Dimension( 75, 1 )
+				} )
+				add( new FormComponent( "javax.swing.JMenuItem" ) {
+					name: "menuBarItemBug"
+					"text": "Reportar Bug"
+					"font": new java.awt.Font( "JetBrains Mono", 0, 15 )
+					"maximumSize": new java.awt.Dimension( 140, 32767 )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuBarItemBugMouseClicked", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
