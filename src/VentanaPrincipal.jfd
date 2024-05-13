@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq {par l {seq l {space :p:53:p, par l {comp button1::l:p:234:p, seq l {comp clicksLbl:::p:94:p, space :p:33:p, comp counterLabel:::p:95:p, space :p:112:p, comp Mejoras:::p::p}}}, seq l {space :p:358:p, comp barritaEnergetica:::p::p}}, space ::569:x}}"
-			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p, comp Mejoras::b:p::p}, space :::p, comp barritaEnergetica:::p::p, space :p:23:p, comp button1:::p:139:p, space ::314:x}}"
+			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq {space :p:29:p, par t {comp button1:::p:234:p, seq {comp clicksLbl:::p:94:p, space :::p, comp counterLabel:::p:95:p}}, par l {seq l {space :p:126:p, comp Mejoras:::p::p}, seq l {space :p:95:p, comp barritaEnergetica:::p::p, space :::p, comp numBarritas:::p::p}}, space ::543:x}}"
+			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp counterLabel::b:p:56:p, comp clicksLbl::b:p:56:p, comp Mejoras::b:p::p}, par l {seq {space :::p, par b {comp barritaEnergetica::b:p::p, comp numBarritas::b:p::p}}, seq l {space :p:18:p, comp button1:::p:139:p}}, space ::355:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 55, 81, 132, 255 )
@@ -67,6 +67,10 @@ new FormModel {
 				name: "Mejoras"
 				"text": "Mejoras"
 				"font": new java.awt.Font( "JetBrains Mono", 2, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "numBarritas"
+				"text": "x0"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

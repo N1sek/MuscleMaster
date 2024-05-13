@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -13,6 +15,7 @@ public class VentanaPrincipal extends JPanel {
     boolean timerOn = false;
     int timerSpeed;
     Timer ticks;
+    Map<String, Integer> mejoras = new HashMap<>();
 
     public VentanaPrincipal() {
         initComponents();
@@ -29,6 +32,7 @@ public class VentanaPrincipal extends JPanel {
                 if (realValue >= 10) {
                     barritaEnergetica.setEnabled(true);
                 }
+                numBarritas.setText("x" + mejoras.getOrDefault("Barrita Energetica", 0));
             }
         });
         ticks.start();
@@ -68,12 +72,32 @@ public class VentanaPrincipal extends JPanel {
         // TODO add your code here
     }
 
+    public void UpdateCPS() {
+        mejoras.forEach((k, v) -> {
+            double mult = 0.1;
+            switch (k) {
+                case "Barrita Energetica":
+                    mult = mult * 4;
+                    break;
+                case "Batido Proteico":
+                default:
+                    break;
+            }
+            click.setCps(click.getCps() + (mejoras.get(k) * mult));
+        });
+        timerUpdate();
+    }
+
     private void barritaEnergeticaMouseClicked(MouseEvent e) {
         if (realValue >= 10) {
             realValue -= 10;
             counterLbl.setText(String.valueOf((int) realValue));
-            click.setCps(click.getCps() + 1);
-            timerUpdate();
+            if (mejoras.containsKey("Barrita Energetica")) {
+                mejoras.put("Barrita Energetica", mejoras.get("Barrita Energetica") + 1);
+            } else {
+                mejoras.put("Barrita Energetica", 1);
+            }
+            UpdateCPS();
             barritaEnergetica.setEnabled(false);
         }
     }
@@ -89,6 +113,7 @@ public class VentanaPrincipal extends JPanel {
         menuItem2 = new JMenuItem();
         barritaEnergetica = new JButton();
         Mejoras = new JLabel();
+        numBarritas = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x375184));
@@ -151,27 +176,32 @@ public class VentanaPrincipal extends JPanel {
         Mejoras.setText("Mejoras");
         Mejoras.setFont(new Font("JetBrains Mono", Font.ITALIC, 16));
 
+        //---- numBarritas ----
+        numBarritas.setText("x0");
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addComponent(menuBar, GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(29, 29, 29)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(112, 112, 112)
-                                    .addComponent(Mejoras))))
+                            .addGap(126, 126, 126)
+                            .addComponent(Mejoras))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(358, 358, 358)
-                            .addComponent(barritaEnergetica)))
-                    .addContainerGap(569, Short.MAX_VALUE))
+                            .addGap(95, 95, 95)
+                            .addComponent(barritaEnergetica)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(numBarritas)))
+                    .addContainerGap(543, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -179,14 +209,19 @@ public class VentanaPrincipal extends JPanel {
                     .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addGap(26, 26, 26)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                         .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                         .addComponent(Mejoras))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(barritaEnergetica)
-                    .addGap(23, 23, 23)
-                    .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(314, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(barritaEnergetica)
+                                .addComponent(numBarritas)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(355, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -201,6 +236,7 @@ public class VentanaPrincipal extends JPanel {
     private JMenuItem menuItem2;
     private JButton barritaEnergetica;
     private JLabel Mejoras;
+    private JLabel numBarritas;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
