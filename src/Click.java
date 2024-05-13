@@ -5,8 +5,8 @@ public class Click {
     public Click() {
     }
 
-    public void click() {
-        clickValue += clickMultiplier;
+    public double click() {
+        return clickValue * clickMultiplier;
     }
 
     public double getClickValue() {
