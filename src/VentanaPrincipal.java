@@ -12,10 +12,10 @@ public class VentanaPrincipal {
         });
     }
 
-    private void button1MouseClicked(MouseEvent e) {
-        int counter = Integer.parseInt(counterLabel.getText());
+    private void clickerBtnMouseClicked(MouseEvent e) {
+        int counter = Integer.parseInt(counterLbl.getText());
         counter++;
-        counterLabel.setText(String.valueOf(counter));
+        counterLbl.setText(String.valueOf(counter));
     }
 
     public static void main(String[] args) {
