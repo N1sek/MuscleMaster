@@ -19,6 +19,7 @@ public class VentanaPrincipal extends JPanel {
         click.setClickValue(1);
         click.setClickMultiplier(1);
         click.setCps(0);
+        setTicksTimer();
     }
 
     public void setTicksTimer() {
@@ -30,6 +31,7 @@ public class VentanaPrincipal extends JPanel {
                 }
             }
         });
+        ticks.start();
     };
 
     public void setTimer() {
