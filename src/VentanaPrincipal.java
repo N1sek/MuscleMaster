@@ -1,134 +1,84 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
 /**
  * @author denisc
  */
+
 public class VentanaPrincipal extends JPanel {
-    Click click = new Click();
-    double realValue;
-    Timer timer;
-    boolean timerOn = false;
-    int timerSpeed;
-    Timer ticks;
-    Map<String, Integer> mejoras = new HashMap<>();
+    private Juego juego;
 
     public VentanaPrincipal() {
         initComponents();
-        click.setClickValue(1);
-        click.setClickMultiplier(1);
-        click.setCps(0);
-        setTicksTimer();
+        juego = new Juego(this); // Pasar la referencia de la UI al crear el juego
+        // Setup UI components and listeners
     }
 
-    public void setTicksTimer() {
-        ticks = new Timer(timerSpeed, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (realValue >= getUpgradePrice("Barrita Energetica")) {
-                    barritaEnergetica.setEnabled(true);
-                } else {barritaEnergetica.setEnabled(false);}
-                if (realValue >= getUpgradePrice("Batido Proteico")) {
-                    batidoProteico.setEnabled(true);
-                } else {batidoProteico.setEnabled(false);}
-                numBarritas.setText("x" + mejoras.getOrDefault("Barrita Energetica", 0));
-                barritaPrice.setText(String.valueOf((int) getUpgradePrice("Barrita Energetica")));
-                numBatidos.setText("x" + mejoras.getOrDefault("Batido Proteico", 0));
-                batidoPrice.setText(String.valueOf((int) getUpgradePrice("Batido Proteico")));
-            }
-        });
-        ticks.start();
-    };
-
-    public void setTimer() {
-         timer = new Timer(timerSpeed, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                realValue += click.getClickValue();
-                counterLbl.setText(""+(int) realValue);
-            }
-        });
+    public void actualizarContador(double valor) {
+        counterLbl.setText(String.valueOf((int) valor));
     }
 
-    public void timerUpdate() {
-        if (click.getCps() != 0) {
-            if (timerOn == false) {
-                timerOn = true;
-            } else if (timerOn == true) {
-                timer.stop();
-            }
-            timerSpeed = (int) Math.round(1 / click.getCps() * 1000);
-            setTimer();
-            timer.start();
+    public void actualizarCPS(double cps) {
+        label1.setText(String.valueOf(cps));
+    }
+
+    public void activarBotonMejora(Mejora mejora) {
+        if (mejora instanceof BarritaEnergetica) {
+            barritaEnergetica.setEnabled(true);
+        } else if (mejora instanceof BatidoProteico) {
+            batidoProteico.setEnabled(true);
+        }
+    }
+
+    public void desactivarBotonMejora(Mejora mejora) {
+        if (mejora instanceof BarritaEnergetica) {
+            barritaEnergetica.setEnabled(false);
+        } else if (mejora instanceof BatidoProteico) {
+            batidoProteico.setEnabled(false);
+        }
+    }
+
+    public void actualizarPrecioYNivelMejora(Mejora mejora) {
+        if (mejora instanceof BarritaEnergetica) {
+            barritaPrice.setText(String.valueOf(mejora.getPrecio()));
+            numBarritas.setText("x" + mejora.getNivel());
+        } else if (mejora instanceof BatidoProteico) {
+            batidoPrice.setText(String.valueOf(mejora.getPrecio()));
+            numBatidos.setText("x" + mejora.getNivel());
         }
     }
 
     private void button1MouseClicked(MouseEvent e) {
-        realValue += click.click();
-        int counter = (int) realValue;
-        counterLbl.setText(String.valueOf(counter));
-        timerUpdate();
-    }
-
-    private void menuBarItemBugMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    public void UpdateCPS() {
-        double mult = 0;
-        for (Map.Entry<String, Integer> entry : mejoras.entrySet()) {
-            switch (entry.getKey()) {
-                case "Barrita Energetica":
-                    mult += entry.getValue() * 0.1;
-                    break;
-                case "Batido Proteico":
-                    mult += entry.getValue() * 0.5;
-                    break;
-                default:
-                    break;
-            }
-        }
-        click.setCps(mult);
-        label1.setText(String.format("%.2f", click.getCps()));
-        timerUpdate();
+        juego.incrementarValorReal(juego.getClick().click());
+        actualizarContador(juego.getRealValue());
+        juego.timerUpdate();
     }
 
     private void barritaEnergeticaMouseClicked(MouseEvent e) {
-        mejoraCPS("Barrita Energetica", 10, barritaEnergetica);
+        juego.comprarMejora(juego.getMejoras().get(0)); // Barrita Energetica
     }
 
     private void batidoProteicoMouseClicked(MouseEvent e) {
-        mejoraCPS("Batido Proteico", 100, batidoProteico);
+        juego.comprarMejora(juego.getMejoras().get(1)); // Batido Proteico
     }
 
-    public double getUpgradePrice(String mejora) {
-        switch (mejora) {
-            case "Barrita Energetica":
-                return 10 * ((mejoras.getOrDefault(mejora, 0) + 1));
-            case "Batido Proteico":
-                return 100 * ((mejoras.getOrDefault(mejora, 0) + 1));
-            default:
-                return 0;
-        }
+    private void menuItemSaveMouseClicked(MouseEvent e) {
+        Guardar guardar = new Guardar(null);
+        guardar.setVisible(true);
     }
 
-    private void mejoraCPS(String mejora, int precioBase, JButton boton) {
-        if (realValue >= getUpgradePrice(mejora)) {
-            realValue -= getUpgradePrice(mejora);
-            counterLbl.setText(String.valueOf((int) realValue));
-            if (mejoras.containsKey(mejora)) {
-                mejoras.put(mejora, mejoras.get(mejora) + 1);
-            } else {
-                mejoras.put(mejora, 1);
-            }
-            UpdateCPS();
-            boton.setEnabled(false);
-        }
+    private void save(ActionEvent e) {
+        // TODO add your code here
     }
+
+    private void menuItemSaveMouseClicked(ActionEvent e) {
+        Guardar guardar = new Guardar(null);
+        guardar.setVisible(true);
+
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -137,8 +87,8 @@ public class VentanaPrincipal extends JPanel {
         counterLbl = new JLabel();
         menuBar = new JMenuBar();
         menuBarItem = new JMenu();
-        menuItem1 = new JMenuItem();
-        menuItem2 = new JMenuItem();
+        menuItemSave = new JMenuItem();
+        menuItemLoad = new JMenuItem();
         barritaEnergetica = new JButton();
         Mejoras = new JLabel();
         numBarritas = new JLabel();
@@ -150,7 +100,7 @@ public class VentanaPrincipal extends JPanel {
         label1 = new JLabel();
 
         //======== this ========
-        setBackground(new Color(0x375184));
+        setBackground(new Color(0x112d36));
 
         //---- clickerBtn ----
         clickerBtn.setText("Press Banca");
@@ -168,12 +118,14 @@ public class VentanaPrincipal extends JPanel {
         });
 
         //---- clicksLbl ----
-        clicksLbl.setText("REPS:");
-        clicksLbl.setFont(new Font("JetBrains Mono", Font.PLAIN, 20));
+        clicksLbl.setText("REPETICIONES:");
+        clicksLbl.setFont(new Font("JetBrains Mono", Font.PLAIN, 26));
+        clicksLbl.setForeground(Color.white);
 
         //---- counterLbl ----
         counterLbl.setText("0");
-        counterLbl.setFont(new Font("JetBrains Mono", Font.PLAIN, 18));
+        counterLbl.setFont(new Font("JetBrains Mono", Font.PLAIN, 24));
+        counterLbl.setForeground(Color.white);
 
         //======== menuBar ========
         {
@@ -183,22 +135,28 @@ public class VentanaPrincipal extends JPanel {
                 menuBarItem.setText("File");
                 menuBarItem.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
 
-                //---- menuItem1 ----
-                menuItem1.setText("Guardar");
-                menuItem1.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
-                menuBarItem.add(menuItem1);
+                //---- menuItemSave ----
+                menuItemSave.setText("Guardar");
+                menuItemSave.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
+                menuItemSave.addActionListener(e -> menuItemSaveMouseClicked(e));
+                menuBarItem.add(menuItemSave);
 
-                //---- menuItem2 ----
-                menuItem2.setText("Cargar");
-                menuItem2.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
-                menuBarItem.add(menuItem2);
+                //---- menuItemLoad ----
+                menuItemLoad.setText("Cargar");
+                menuItemLoad.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
+                menuBarItem.add(menuItemLoad);
             }
             menuBar.add(menuBarItem);
         }
 
         //---- barritaEnergetica ----
-        barritaEnergetica.setText("Barrita Energetica");
+        barritaEnergetica.setText("<html><b>BARRITA ENERGETICA</b><br>10 repes</html>");
         barritaEnergetica.setEnabled(false);
+        barritaEnergetica.setToolTipText("Aumenta el valor de tu repeticion en 0,1 por cada click");
+        barritaEnergetica.setFont(new Font("Inter", Font.PLAIN, 18));
+        barritaEnergetica.setBackground(new Color(0x141414));
+        barritaEnergetica.setForeground(Color.green);
+        barritaEnergetica.setBorderPainted(false);
         barritaEnergetica.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -208,15 +166,22 @@ public class VentanaPrincipal extends JPanel {
 
         //---- Mejoras ----
         Mejoras.setText("Mejoras");
-        Mejoras.setFont(new Font("JetBrains Mono", Font.ITALIC, 16));
+        Mejoras.setFont(new Font("JetBrains Mono", Font.BOLD, 40));
+        Mejoras.setForeground(Color.white);
 
         //---- numBarritas ----
         numBarritas.setText("x0");
+        numBarritas.setFont(new Font("Inter", Font.PLAIN, 20));
+        numBarritas.setForeground(Color.white);
 
         //---- batidoProteico ----
-        batidoProteico.setText("Batido Proteico");
+        batidoProteico.setText("<html><b>BATIDO PROTEICO</b><br>100 repes</html>");
         batidoProteico.setEnabled(false);
         batidoProteico.setActionCommand("Batido Proteico");
+        batidoProteico.setFont(new Font("Inter", Font.PLAIN, 18));
+        batidoProteico.setForeground(Color.green);
+        batidoProteico.setToolTipText("Aumenta el valor de tu repeticion en 0,5 por cada click");
+        batidoProteico.setBackground(new Color(0x141414));
         batidoProteico.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -226,90 +191,115 @@ public class VentanaPrincipal extends JPanel {
 
         //---- numBatidos ----
         numBatidos.setText("x0");
+        numBatidos.setFont(new Font("Inter", Font.PLAIN, 20));
+        numBatidos.setForeground(Color.white);
 
         //---- barritaPrice ----
         barritaPrice.setText("10");
+        barritaPrice.setForeground(Color.white);
 
         //---- batidoPrice ----
         batidoPrice.setText("100");
+        batidoPrice.setForeground(Color.white);
 
         //---- RPS ----
         RPS.setText("RPS:");
-        RPS.setFont(new Font("JetBrains Mono", Font.PLAIN, 11));
+        RPS.setFont(new Font("JetBrains Mono", Font.PLAIN, 18));
+        RPS.setForeground(Color.white);
 
         //---- label1 ----
         label1.setText("0");
-        label1.setFont(new Font("JetBrains Mono", Font.PLAIN, 11));
+        label1.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
+        label1.setForeground(Color.white);
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addComponent(menuBar, GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(29, 29, 29)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup()
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(RPS)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))))
+                .addComponent(menuBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(38, 38, 38)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(126, 126, 126)
-                            .addComponent(Mejoras))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(55, 55, 55)
-                            .addComponent(barritaPrice)
+                            .addComponent(clicksLbl)
+                            .addGap(18, 18, 18)
+                            .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(Mejoras)
+                            .addGap(152, 152, 152))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(barritaPrice)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(barritaEnergetica, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(batidoPrice)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(batidoProteico, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(barritaEnergetica)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numBarritas))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(49, 49, 49)
-                            .addComponent(batidoPrice)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(batidoProteico)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numBatidos)))
-                    .addContainerGap(566, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(numBarritas)
+                                .addComponent(numBatidos))
+                            .addGap(35, 35, 35))))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(56, 56, 56)
+                    .addComponent(RPS)
+                    .addGap(18, 18, 18)
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Mejoras))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(barritaEnergetica)
-                                .addComponent(numBarritas)
-                                .addComponent(barritaPrice))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(batidoProteico)
-                                .addComponent(batidoPrice)
-                                .addComponent(numBatidos)))
+                            .addGap(12, 12, 12)
+                            .addComponent(Mejoras)
+                            .addGroup(layout.createParallelGroup()
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(barritaEnergetica, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(40, 40, 40)
+                                    .addComponent(numBarritas)))
+                            .addGroup(layout.createParallelGroup()
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(36, 36, 36)
+                                    .addGroup(layout.createParallelGroup()
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(25, 25, 25)
+                                            .addComponent(numBatidos))
+                                        .addComponent(batidoProteico, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(64, 64, 64)
+                                    .addComponent(batidoPrice))))
                         .addGroup(layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(RPS)
-                                .addComponent(label1))
-                            .addGap(51, 51, 51)
+                                .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup()
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(27, 27, 27)
+                                    .addComponent(barritaPrice))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(RPS)
+                                        .addComponent(label1))))
+                            .addGap(18, 18, 18)
                             .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(300, Short.MAX_VALUE))
+                    .addContainerGap(200, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
+
+
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JButton clickerBtn;
@@ -317,8 +307,8 @@ public class VentanaPrincipal extends JPanel {
     private JLabel counterLbl;
     private JMenuBar menuBar;
     private JMenu menuBarItem;
-    private JMenuItem menuItem1;
-    private JMenuItem menuItem2;
+    private JMenuItem menuItemSave;
+    private JMenuItem menuItemLoad;
     private JButton barritaEnergetica;
     private JLabel Mejoras;
     private JLabel numBarritas;
@@ -329,6 +319,4 @@ public class VentanaPrincipal extends JPanel {
     private JLabel RPS;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
-
 }
