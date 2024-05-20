@@ -1,10 +1,10 @@
 public class Testosterona extends Mejora{
     public Testosterona() {
-        super("Testosterona", 200);
+        super("Testosterona", 10000);
     }
 
     @Override
     public double getIncrementoCPS() {
-        return nivel * 3;
+        return nivel * 4;
     }
 }

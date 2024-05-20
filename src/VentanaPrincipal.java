@@ -50,14 +50,16 @@ public class VentanaPrincipal extends JPanel {
 
     public void actualizarPrecioYNivelMejora(Mejora mejora) {
         if (mejora instanceof BarritaEnergetica) {
-            barritaPrice.setText(String.valueOf(mejora.getPrecio()));
+            barritaEnergetica.setText("<html><b>BARRITA ENERGETICA</b><br>" + String.valueOf(mejora.getPrecio()) + " repes </html>");
             numBarritas.setText("x" + mejora.getNivel());
         } else if (mejora instanceof BatidoProteico) {
-            batidoPrice.setText(String.valueOf(mejora.getPrecio()));
+            batidoProteico.setText("<html><b>BATIDO PROTEICO</b><br>" + String.valueOf(mejora.getPrecio()) + " repes </html>");
             numBatidos.setText("x" + mejora.getNivel());
         } else if (mejora instanceof Creatina) {
+            creatina.setText("<html><b>CREATINA</b><br>" + String.valueOf(mejora.getPrecio()) + " repes </html>");
             numCreatina.setText("x" + mejora.getNivel());
         } else if (mejora instanceof Testosterona) {
+            testosterona.setText("<html><b>TESTOSTERONA</b><br>" + String.valueOf(mejora.getPrecio()) + " repes </html>");
             numTestosterona.setText("x" + mejora.getNivel());
         }
     }
@@ -84,12 +86,6 @@ public class VentanaPrincipal extends JPanel {
         juego.comprarMejora(juego.getMejoras().get(3)); // Testosterona
     }
 
-    private void menuItemSaveMouseClicked(MouseEvent e) {
-        Guardar guardar = new Guardar(null);
-        guardar.setVisible(true);
-    }
-
-
     private void menuItemSaveMouseClicked(ActionEvent e) {
         Guardar guardar = new Guardar(null);
         guardar.setVisible(true);
@@ -111,8 +107,6 @@ public class VentanaPrincipal extends JPanel {
         numBarritas = new JLabel();
         batidoProteico = new JButton();
         numBatidos = new JLabel();
-        barritaPrice = new JLabel();
-        batidoPrice = new JLabel();
         RPS = new JLabel();
         label1 = new JLabel();
         creatina = new JButton();
@@ -179,8 +173,8 @@ public class VentanaPrincipal extends JPanel {
         barritaEnergetica.setForeground(Color.green);
         barritaEnergetica.setBorderPainted(false);
         barritaEnergetica.setMargin(new Insets(0, 40, 0, 0));
-        barritaEnergetica.setHorizontalAlignment(SwingConstants.LEFT);
         barritaEnergetica.setBorder(null);
+        barritaEnergetica.setHorizontalAlignment(SwingConstants.LEADING);
         barritaEnergetica.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -207,8 +201,8 @@ public class VentanaPrincipal extends JPanel {
         batidoProteico.setToolTipText("Aumenta el valor de tu repeticion en 0,5 por cada click");
         batidoProteico.setBackground(new Color(0x141414));
         batidoProteico.setBorder(null);
-        batidoProteico.setHorizontalAlignment(SwingConstants.LEFT);
         batidoProteico.setMargin(new Insets(0, 40, 0, 0));
+        batidoProteico.setHorizontalAlignment(SwingConstants.LEADING);
         batidoProteico.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -220,14 +214,6 @@ public class VentanaPrincipal extends JPanel {
         numBatidos.setText("x0");
         numBatidos.setFont(new Font("Inter", Font.PLAIN, 20));
         numBatidos.setForeground(Color.white);
-
-        //---- barritaPrice ----
-        barritaPrice.setText("10");
-        barritaPrice.setForeground(Color.white);
-
-        //---- batidoPrice ----
-        batidoPrice.setText("100");
-        batidoPrice.setForeground(Color.white);
 
         //---- RPS ----
         RPS.setText("RPS:");
@@ -245,15 +231,15 @@ public class VentanaPrincipal extends JPanel {
         creatina.setActionCommand("Batido Proteico");
         creatina.setFont(new Font("Inter", Font.PLAIN, 18));
         creatina.setForeground(Color.green);
-        creatina.setToolTipText("Aumenta el valor de tu repeticion en 0,5 por cada click");
+        creatina.setToolTipText("Aumenta el valor de tu repeticion en 2 por cada click");
         creatina.setBackground(new Color(0x141414));
         creatina.setBorder(null);
-        creatina.setHorizontalAlignment(SwingConstants.LEFT);
         creatina.setMargin(new Insets(0, 40, 0, 0));
+        creatina.setHorizontalAlignment(SwingConstants.LEADING);
         creatina.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                batidoProteicoMouseClicked(e);
+                creatinaMouseClicked(e);
             }
         });
 
@@ -268,15 +254,15 @@ public class VentanaPrincipal extends JPanel {
         testosterona.setActionCommand("Batido Proteico");
         testosterona.setFont(new Font("Inter", Font.PLAIN, 18));
         testosterona.setForeground(Color.green);
-        testosterona.setToolTipText("Aumenta el valor de tu repeticion en 0,5 por cada click");
+        testosterona.setToolTipText("Aumenta el valor de tu repeticion en 4 por cada click");
         testosterona.setBackground(new Color(0x141414));
         testosterona.setBorder(null);
-        testosterona.setHorizontalAlignment(SwingConstants.LEFT);
         testosterona.setMargin(new Insets(0, 40, 0, 0));
+        testosterona.setHorizontalAlignment(SwingConstants.LEADING);
         testosterona.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                batidoProteicoMouseClicked(e);
+                testosteronaMouseClicked(e);
             }
         });
 
@@ -298,21 +284,15 @@ public class VentanaPrincipal extends JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
                         .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(Mejoras)
                             .addGap(152, 152, 152))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(barritaPrice)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(barritaEnergetica, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(batidoPrice)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(batidoProteico, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(barritaEnergetica, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(batidoProteico, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(creatina, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(testosterona, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -363,29 +343,19 @@ public class VentanaPrincipal extends JPanel {
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(clicksLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(27, 27, 27)
-                                    .addComponent(barritaPrice))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(RPS)
-                                        .addComponent(label1))))
-                            .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(51, 51, 51)
-                                    .addComponent(batidoPrice)))))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(RPS)
+                                .addComponent(label1))
+                            .addGap(13, 13, 13)
+                            .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(testosterona, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(9, 9, 9)
                             .addComponent(numTestosterona)))
-                    .addContainerGap(149, Short.MAX_VALUE))
+                    .addContainerGap(167, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -405,8 +375,6 @@ public class VentanaPrincipal extends JPanel {
     private JLabel numBarritas;
     private JButton batidoProteico;
     private JLabel numBatidos;
-    private JLabel barritaPrice;
-    private JLabel batidoPrice;
     private JLabel RPS;
     private JLabel label1;
     private JButton creatina;

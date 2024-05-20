@@ -20,6 +20,8 @@ public class Juego {
         mejoras = new ArrayList<>();
         mejoras.add(new BarritaEnergetica());
         mejoras.add(new BatidoProteico());
+        mejoras.add(new Creatina());
+        mejoras.add(new Testosterona());
         setTicksTimer();
     }
 

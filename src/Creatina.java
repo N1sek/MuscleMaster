@@ -1,7 +1,7 @@
 public class Creatina extends Mejora{
 
     public Creatina() {
-        super("Creatina", 50);
+        super("Creatina", 1000);
     }
 
     @Override
