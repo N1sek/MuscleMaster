@@ -21,7 +21,7 @@ public class VentanaPrincipal extends JPanel {
     }
 
     public void actualizarCPS(double cps) {
-        label1.setText(String.valueOf(cps));
+        label1.setText((String) String.format("%.2f", cps));
     }
 
     public void activarBotonMejora(Mejora mejora) {
