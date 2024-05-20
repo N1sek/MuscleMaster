@@ -87,9 +87,9 @@ public class VentanaPrincipal extends JPanel {
     }
 
     private void menuItemSaveMouseClicked(ActionEvent e) {
-        Guardar guardar = new Guardar(null);
-        guardar.setVisible(true);
-
+//        Guardar guardar = new Guardar(null);
+//        guardar.setVisible(true);
+        JuegoDAO.guardarJuego(juego);
     }
 
 
