@@ -17,12 +17,16 @@ public abstract class Mejora {
         return nivel;
     }
 
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
     public void incrementarNivel() {
         nivel++;
     }
 
-    public double getPrecio() {
-        return precioBase * (nivel + 1);
+    public int getPrecio() {
+        return (int) precioBase * (nivel + 1);
     }
 
     public abstract double getIncrementoCPS();

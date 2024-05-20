@@ -33,6 +33,10 @@ public class Juego {
         return realValue;
     }
 
+    public void setRealValue(double realValue) {
+        this.realValue = realValue;
+    }
+
     public void incrementarValorReal(double valor) {
         realValue += valor;
         ui.actualizarContador(realValue);
@@ -80,6 +84,9 @@ public class Juego {
             timerSpeed = (int) Math.round(1 / click.getCps() * 1000);
             setTimer();
             timer.start();
+        } else {
+            timer.stop();
+            timerOn = false;
         }
     }
 

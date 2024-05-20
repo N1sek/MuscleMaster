@@ -1,24 +1,20 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.border.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 /*
  * Created by JFormDesigner on Sun May 19 22:37:22 CEST 2024
  */
 
 
-
 /**
- * @author denisc
+ * @author Capaseztel
  */
-public class Guardar extends JDialog {
+public class Cargar extends JDialog {
     private Usuario usuario = VentanaPrincipal.getUsuario();
-    public Guardar(JFrame owner) {
+    public Cargar(JFrame owner) {
         super(owner);
         initComponents();
         setModal(true);
@@ -50,31 +46,28 @@ public class Guardar extends JDialog {
     private void Guardado3MouseClicked(MouseEvent e) {
         try {
             JuegoDAO.getGuardados(usuario.getId()).get(2);
-            JuegoDAO.ReescribirGuardado(VentanaPrincipal.getJuego(), 3, usuario.getId());
+            Main.getVentana().loadGameFile(3);
         } catch (Exception a) {
-            JuegoDAO.NuevoGuardado(VentanaPrincipal.getJuego(), usuario.getId());
+            System.out.println("Sin Partida guardada");
         }
-        actualizarGuardados();
     }
 
     private void Guardado1MouseClicked(MouseEvent e) {
         try {
             JuegoDAO.getGuardados(usuario.getId()).get(0);
-            JuegoDAO.ReescribirGuardado(VentanaPrincipal.getJuego(), 1, usuario.getId());
+            Main.getVentana().loadGameFile(1);
         } catch (Exception a) {
-            JuegoDAO.NuevoGuardado(VentanaPrincipal.getJuego(), usuario.getId());
+            System.out.println("Sin Partida guardada");
         }
-        actualizarGuardados();
     }
 
     private void Guardado2MouseClicked(MouseEvent e) {
         try {
             JuegoDAO.getGuardados(usuario.getId()).get(1);
-            JuegoDAO.ReescribirGuardado(VentanaPrincipal.getJuego(), 2, usuario.getId());
+            Main.getVentana().loadGameFile(2);
         } catch (Exception a) {
-            JuegoDAO.NuevoGuardado(VentanaPrincipal.getJuego(), usuario.getId());
+            System.out.println("Sin Partida guardada");
         }
-        actualizarGuardados();
     }
 
     private void initComponents() {
