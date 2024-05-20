@@ -72,7 +72,6 @@ public class VentanaPrincipal extends JPanel {
     private void button1MouseClicked(MouseEvent e) {
         juego.incrementarValorReal(juego.getClick().click());
         actualizarContador(juego.getRealValue());
-        juego.timerUpdate();
     }
 
     private void barritaEnergeticaMouseClicked(MouseEvent e) {
