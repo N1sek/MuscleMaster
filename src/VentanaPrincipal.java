@@ -69,9 +69,6 @@ public class VentanaPrincipal extends JPanel {
         guardar.setVisible(true);
     }
 
-    private void save(ActionEvent e) {
-        // TODO add your code here
-    }
 
     private void menuItemSaveMouseClicked(ActionEvent e) {
         Guardar guardar = new Guardar(null);
@@ -225,7 +222,7 @@ public class VentanaPrincipal extends JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(counterLbl, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
                         .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(Mejoras)
@@ -249,8 +246,8 @@ public class VentanaPrincipal extends JPanel {
                     .addGap(56, 56, 56)
                     .addComponent(RPS)
                     .addGap(18, 18, 18)
-                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(740, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -294,7 +291,7 @@ public class VentanaPrincipal extends JPanel {
                                         .addComponent(label1))))
                             .addGap(18, 18, 18)
                             .addComponent(clickerBtn, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(200, Short.MAX_VALUE))
+                    .addContainerGap(201, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
