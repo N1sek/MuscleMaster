@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("VentanaPrincipal");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(840,655);
+        frame.setSize(1000,655);
         Main main = new Main();
         frame.add(main.getVentana());
         frame.setLocationRelativeTo(null);
