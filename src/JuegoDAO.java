@@ -1,13 +1,14 @@
 import java.sql.*;
 
 public class JuegoDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-    private static final String USUARIO = "root";
-    private static final String CONTRASEÑA = "admin";
+    private static String URL = "jdbc:mysql://localhost/muscle_master";
+    private static String USUARIO = "root";
+    private static String CONTRASEÑA = "root";
 
     public static void guardarJuego(Juego juego) {
         try (Connection connection = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA)) {
-            // CONSULTAS AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+            // CONSULTAS AQUI
+            String sql = String.format("insert into PartidasGuardadas values (1,null,%2d,%2d,%2d,%2d,%2d,%2d);", juego.getRealValue(), juego.getMejoras().get(0), juego.getMejoras().get(1), juego.getMejoras().get(2), juego.getMejoras().get(3), 0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
