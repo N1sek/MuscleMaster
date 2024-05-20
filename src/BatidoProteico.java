@@ -5,6 +5,6 @@ public class BatidoProteico extends Mejora {
 
     @Override
     public double getIncrementoCPS() {
-        return nivel * 0.5;
+        return nivel * 1;
     }
 }

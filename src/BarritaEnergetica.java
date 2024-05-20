@@ -5,6 +5,6 @@ public class BarritaEnergetica extends Mejora {
 
     @Override
     public double getIncrementoCPS() {
-        return nivel * 0.1;
+        return nivel * 20.5;
     }
 }
