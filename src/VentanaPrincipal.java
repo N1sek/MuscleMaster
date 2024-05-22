@@ -70,8 +70,10 @@ public class VentanaPrincipal extends JPanel {
     }
 
     private void button1MouseClicked(MouseEvent e) {
-        juego.incrementarValorReal(juego.getClick().click());
-        actualizarContador(juego.getRealValue());
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            juego.incrementarValorReal(juego.getClick().click());
+            actualizarContador(juego.getRealValue());
+        }
     }
 
     private void barritaEnergeticaMouseClicked(MouseEvent e) {
@@ -148,6 +150,7 @@ public class VentanaPrincipal extends JPanel {
         clickerBtn.setFocusPainted(false);
         clickerBtn.setContentAreaFilled(false);
         clickerBtn.setPressedIcon(new ImageIcon(getClass().getResource("/assets/press2.png")));
+        clickerBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         clickerBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -172,16 +175,19 @@ public class VentanaPrincipal extends JPanel {
             {
                 menuBarItem.setText("File");
                 menuBarItem.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
+                menuBarItem.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
                 //---- menuItemSave ----
                 menuItemSave.setText("Guardar");
                 menuItemSave.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
+                menuItemSave.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 menuItemSave.addActionListener(e -> menuItemSaveMouseClicked(e));
                 menuBarItem.add(menuItemSave);
 
                 //---- menuItemLoad ----
                 menuItemLoad.setText("Cargar");
                 menuItemLoad.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
+                menuItemLoad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 menuItemLoad.addActionListener(e -> load(e));
                 menuBarItem.add(menuItemLoad);
             }
@@ -199,6 +205,7 @@ public class VentanaPrincipal extends JPanel {
         barritaEnergetica.setMargin(new Insets(0, 40, 0, 0));
         barritaEnergetica.setBorder(null);
         barritaEnergetica.setHorizontalAlignment(SwingConstants.LEADING);
+        barritaEnergetica.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         barritaEnergetica.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -227,6 +234,7 @@ public class VentanaPrincipal extends JPanel {
         batidoProteico.setBorder(null);
         batidoProteico.setMargin(new Insets(0, 40, 0, 0));
         batidoProteico.setHorizontalAlignment(SwingConstants.LEADING);
+        batidoProteico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         batidoProteico.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -260,6 +268,7 @@ public class VentanaPrincipal extends JPanel {
         creatina.setBorder(null);
         creatina.setMargin(new Insets(0, 40, 0, 0));
         creatina.setHorizontalAlignment(SwingConstants.LEADING);
+        creatina.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         creatina.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -283,6 +292,7 @@ public class VentanaPrincipal extends JPanel {
         testosterona.setBorder(null);
         testosterona.setMargin(new Insets(0, 40, 0, 0));
         testosterona.setHorizontalAlignment(SwingConstants.LEADING);
+        testosterona.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         testosterona.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

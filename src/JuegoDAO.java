@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JuegoDAO {
 
-    private static String getUsuario() {
+    static String getUsuario() {
         BufferedReader br;
         String USUARIO;
         String CONTRASEÑA;
@@ -27,7 +27,7 @@ public class JuegoDAO {
         return USUARIO;
     }
 
-    private static String getContraseña() {
+    static String getContraseña() {
         BufferedReader br;
         String USUARIO;
         String CONTRASEÑA;

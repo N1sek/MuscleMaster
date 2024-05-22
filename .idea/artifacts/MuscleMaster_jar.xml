@@ -4,6 +4,7 @@
     <root id="archive" name="MuscleMaster.jar">
       <element id="module-output" name="MuscleMaster" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-j-8.3.0.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/credenciales.txt" />
     </root>
   </artifact>
 </component>
