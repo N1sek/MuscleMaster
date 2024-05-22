@@ -22,6 +22,7 @@ public class Juego {
         mejoras.add(new BatidoProteico());
         mejoras.add(new Creatina());
         mejoras.add(new Testosterona());
+        mejoras.add(new Peso());
         setTicksTimer();
     }
 
@@ -105,7 +106,11 @@ public class Juego {
         if (realValue >= mejora.getPrecio()) {
             realValue -= mejora.getPrecio();
             mejora.incrementarNivel();
-            actualizarCPS();
+            try {
+                actualizarCPS();
+            } catch (Exception e) {
+
+            }
             // Desactivar botón de mejora
             ui.desactivarBotonMejora(mejora);
             // Actualizar contador

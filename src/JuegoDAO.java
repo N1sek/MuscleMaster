@@ -62,7 +62,7 @@ public class JuegoDAO {
                         ", BatidoProteico = " + juego.getMejoras().get(1).getNivel() +
                         ", Creatina = " + juego.getMejoras().get(2).getNivel() +
                         ", Testosterona = " + juego.getMejoras().get(3).getNivel() +
-                        ", Peso = 0 " +
+                        ", Peso = " + juego.getMejoras().get(4).getNivel() +
                         "where ID = " + rs.getInt("ID");
                 try (Statement statement2 = connection.createStatement()) {
                     statement2.executeUpdate(sql);
@@ -90,7 +90,7 @@ public class JuegoDAO {
                     "," + juego.getMejoras().get(1).getNivel() +
                     "," + juego.getMejoras().get(2).getNivel() +
                     "," + juego.getMejoras().get(3).getNivel() +
-                    ",0" +
+                    "," + juego.getMejoras().get(4).getNivel() +
                     ")";
             try (Statement statement = connection.createStatement()) {
                 statement.executeUpdate(sql);
@@ -136,6 +136,7 @@ public class JuegoDAO {
                 VentanaPrincipal.getJuego().getMejoras().get(1).setNivel(rs.getInt("BatidoProteico"));
                 VentanaPrincipal.getJuego().getMejoras().get(2).setNivel(rs.getInt("Creatina"));
                 VentanaPrincipal.getJuego().getMejoras().get(3).setNivel(rs.getInt("Testosterona"));
+                VentanaPrincipal.getJuego().getMejoras().get(4).setNivel(rs.getInt("Peso"));
                 System.out.println("Cargado");
              } catch (SQLException e) {
                 e.printStackTrace();

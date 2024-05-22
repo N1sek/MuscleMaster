@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp menuBar:::::x, seq t {space :p:38:p, par l {seq {comp clicksLbl:::p::p, space u:::p, comp counterLabel:::p:271:p}, comp button1:::p:234:p}, space ::58:x, par l {seq t {par t {comp batidoProteico::t:p:271:p, comp barritaEnergetica:::p:271:p, comp creatina::t:p:271:p, comp testosterona:::p:271:p}, space u:::p, par l {comp numCreatina:::p::p, comp numBatidos::l:p::p, comp numBarritas:::p::p, comp numTestosterona::l:p::p}, space :p:76:p}, seq t {comp Mejoras:::p::p, space :p:172:p}}}, seq {space :p:56:p, comp RPS:::p::p, space s:::p, comp label1:::p:112:p, space ::739:x}}"
-			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, par l {seq l {space :p:21:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :::p, par b {comp RPS::b:p::p, comp label1::b:p::p}, space :p:13:p, comp button1:::p:139:p}, seq l {space u:::p, comp Mejoras:::p::p, space :p:12:p, comp barritaEnergetica:::p::p, space :p:27:p, comp batidoProteico:::p::p, space :p:33:p, comp creatina:::p::p}, seq l {space :p:89:p, comp numBarritas:::p::p, space :p:48:p, comp numBatidos:::p::p, space :p:55:p, comp numCreatina:::p::p}}, par l {seq {space :p:30:p, comp testosterona:::p::p}, seq l {space :p:40:p, comp numTestosterona:::p::p}}, space ::129:x}}"
+			"$horizontalGroup": "par l {comp menuBar:::::x, seq {space :p:56:p, comp RPS:::p::p, space s:::p, comp label1:::p:112:p, space ::739:x}, seq l {space :p:38:p, par l {seq {comp clicksLbl:::p::p, space u:::p, comp counterLabel:::p:271:p}, comp button1:::p:234:p, comp Peso::l:p:271:p, comp MejorasBarra::l:p:126:p}, space ::58:x, par l {seq t {par t {comp batidoProteico::t:p:271:p, comp barritaEnergetica:::p:271:p, comp creatina::t:p:271:p, comp testosterona:::p:271:p}, space u:::p, par l {comp numCreatina:::p::p, comp numBatidos::l:p::p, comp numBarritas:::p::p, comp numTestosterona::l:p::p}, space :p:76:p}, seq t {comp Mejoras:::p::p, space :p:172:p}}}}"
+			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, par l {seq l {par l {seq l {space u:::p, comp Mejoras:::p::p, space :p:12:p, comp barritaEnergetica:::p::p, space :p:27:p, comp batidoProteico:::p::p, space :p:33:p, comp creatina:::p::p}, seq l {space :p:89:p, comp numBarritas:::p::p, space :p:48:p, comp numBatidos:::p::p, space :p:55:p, comp numCreatina:::p::p}}, par l {seq {space :p:30:p, comp testosterona:::p::p}, seq l {space :p:40:p, comp numTestosterona:::p::p}}}, seq l {space :p:21:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :::p, par b {comp RPS::b:p::p, comp label1::b:p::p}, space :p:13:p, comp button1:::p:139:p, space :p:40:p, comp MejorasBarra:::p::p, space s:::p, comp Peso:::p::p}}, space ::95:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 26, 70, 84, 255 )
@@ -69,7 +69,7 @@ new FormModel {
 				name: "barritaEnergetica"
 				"text": "<html><b>BARRITA ENERGETICA</b><br>10 repes</html>"
 				"enabled": false
-				"toolTipText": "Aumenta el valor de tu repeticion en 0,1 por cada click"
+				"toolTipText": "Aumenta el valor de tus RPS en 0,5"
 				"font": new java.awt.Font( "Inter", 0, 18 )
 				"background": new java.awt.Color( 35, 35, 35, 255 )
 				"foreground": sfield java.awt.Color green
@@ -99,7 +99,7 @@ new FormModel {
 				"actionCommand": "Batido Proteico"
 				"font": &Font0 new java.awt.Font( "Inter", 0, 18 )
 				"foreground": sfield java.awt.Color green
-				"toolTipText": "Aumenta el valor de tu repeticion en 0,5 por cada click"
+				"toolTipText": "Aumenta el valor de tus RPS en 1"
 				"background": new java.awt.Color( 35, 35, 35, 255 )
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				"margin": new java.awt.Insets( 0, 40, 0, 0 )
@@ -132,7 +132,7 @@ new FormModel {
 				"actionCommand": "Batido Proteico"
 				"font": #Font0
 				"foreground": sfield java.awt.Color green
-				"toolTipText": "Aumenta el valor de tu repeticion en 2 por cada click"
+				"toolTipText": "Aumenta el valor de tus RPS en 2"
 				"background": new java.awt.Color( 35, 35, 35, 255 )
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				"margin": &Insets0 new java.awt.Insets( 0, 40, 0, 0 )
@@ -153,8 +153,8 @@ new FormModel {
 				"actionCommand": "Batido Proteico"
 				"font": #Font0
 				"foreground": sfield java.awt.Color green
-				"toolTipText": "Aumenta el valor de tu repeticion en 4 por cada click"
-				"background": new java.awt.Color( 35, 35, 35, 255 )
+				"toolTipText": "Aumenta el valor de tus RPS en 4"
+				"background": &Color1 new java.awt.Color( 35, 35, 35, 255 )
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				"margin": #Insets0
 				"horizontalAlignment": 10
@@ -166,6 +166,27 @@ new FormModel {
 				"text": "x0"
 				"font": #Font1
 				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "MejorasBarra"
+				"text": "Mejoras Barra"
+				"font": new java.awt.Font( "JetBrains Mono", 1, 14 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "Peso"
+				"text": "<html><b>Pesa 5Kg</b><br>200 repes</html>"
+				"enabled": false
+				"actionCommand": "Batido Proteico"
+				"font": #Font0
+				"foreground": sfield java.awt.Color green
+				"toolTipText": "Mientras mas peso mas repeticiones consigues por click"
+				"background": #Color1
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": #Insets0
+				"horizontalAlignment": 10
+				"cursor": #Cursor0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "PesoMouseClicked", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

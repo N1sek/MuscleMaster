@@ -14,6 +14,7 @@ public class Main {
         JFrame frame = new JFrame("VentanaPrincipal");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,655);
+        frame.setResizable(false);
         Main main = new Main();
         frame.add(main.getVentana());
         frame.setLocationRelativeTo(null);

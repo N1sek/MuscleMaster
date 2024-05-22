@@ -5,8 +5,6 @@ import javax.swing.*;
  * Created by JFormDesigner on Wed May 22 09:09:57 CEST 2024
  */
 
-
-
 /**
  * @author manue
  */
