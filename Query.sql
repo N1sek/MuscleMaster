@@ -23,6 +23,6 @@ CREATE TABLE PartidasGuardadas(
 
 insert into usuarios values (null,"Manuel","password");
 
-insert into PartidasGuardadas values (1,null,CURRENT_TIMESTAMP,12,1,2,3,4,5);
+insert into PartidasGuardadas values (1,null,CURRENT_TIMESTAMP,13890,4,3,2,1,2);
 
 select * from PartidasGuardadas;
