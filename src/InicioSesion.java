@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
 /*
@@ -17,7 +16,7 @@ public class InicioSesion extends JFrame {
 
     private void BotonIniciarSesionMouseClicked(MouseEvent e) {
         try {
-            UsuarioDAO.getUsuario(UsernameInput.getText(), Arrays.toString(PasswdInput.getPassword()));
+            UsuarioDAO.getUsuario(UsernameInput.getText(), PasswdInput.getText());
             if (UsuarioDAO.getUsuario(UsernameInput.getText(), PasswdInput.getText()) == null) {
                 IniciarSesion.setText("Usuario no encontrado");
                 throw new Exception("Usuario no encontrado");
@@ -43,7 +42,6 @@ public class InicioSesion extends JFrame {
                 a.printStackTrace();
             }
         } else {
-            IniciarSesion.setText("Completa los campos");
             new Exception("En blanco").printStackTrace();
         }
     }
@@ -55,7 +53,7 @@ public class InicioSesion extends JFrame {
         Username = new JLabel();
         UsernameInput = new JTextField();
         Passwd = new JLabel();
-        PasswdInput = new JPasswordField();
+        PasswdInput = new JTextField();
         BotonRegistrar = new JButton();
         BotonIniciarSesion = new JButton();
 
@@ -122,7 +120,7 @@ public class InicioSesion extends JFrame {
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addComponent(IniciarSesion)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                     .addComponent(Username)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(UsernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -146,7 +144,7 @@ public class InicioSesion extends JFrame {
     private JLabel Username;
     private JTextField UsernameInput;
     private JLabel Passwd;
-    private JPasswordField PasswdInput;
+    private JTextField PasswdInput;
     private JButton BotonRegistrar;
     private JButton BotonIniciarSesion;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
