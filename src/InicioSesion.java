@@ -30,7 +30,7 @@ public class InicioSesion extends JFrame {
     }
 
     private void BotonRegistrarMouseClicked(MouseEvent e) {
-        if (UsernameInput.getText() == "" || PasswdInput.getText() == "") {
+        if (UsernameInput.getText() != "" || PasswdInput.getText() != "") {
             try {
                 UsuarioDAO.insertUsuario(UsernameInput.getText(), PasswdInput.getText());
                 Main.setVentana(new VentanaPrincipal(UsuarioDAO.getUsuario(UsernameInput.getText(), PasswdInput.getText())));
