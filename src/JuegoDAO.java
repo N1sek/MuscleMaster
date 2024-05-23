@@ -63,7 +63,7 @@ public class JuegoDAO {
                         ", Creatina = " + juego.getMejoras().get(2).getNivel() +
                         ", Testosterona = " + juego.getMejoras().get(3).getNivel() +
                         ", Peso = " + juego.getMejoras().get(4).getNivel() +
-                        "where ID = " + rs.getInt("ID");
+                        " where ID = " + rs.getInt("ID");
                 try (Statement statement2 = connection.createStatement()) {
                     statement2.executeUpdate(sql);
                     System.out.println("guardado");
