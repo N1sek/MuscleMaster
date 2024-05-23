@@ -5,7 +5,7 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {par l {seq {space :p:84:p, comp BotonRegistrar:::p::p, space u:::p, comp BotonIniciarSesion:::p::p}, seq l {space :p:42:p, par l {comp IniciarSesion:::p:201:p, comp PasswdInput::l:p:201:p, comp Passwd::l:p:201:p, comp UsernameInput::l:p:201:p, comp Username::l:p:201:p}}}, space :::p}}"
-			"$verticalGroup": "par l {seq l {comp IniciarSesion:::p::p, space ::34:x, comp Username:::p::p, space :::p, comp UsernameInput:::p::p, space s:::p, comp Passwd:::p::p, space :::p, comp PasswdInput:::p::p, space :p:43:p, par b {comp BotonIniciarSesion::b:p::p, comp BotonRegistrar::b:p::p}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp IniciarSesion:::p::p, space ::31:x, comp Username:::p::p, space :::p, comp UsernameInput:::p::p, space s:::p, comp Passwd:::p::p, space :::p, comp PasswdInput:::p::p, space :p:43:p, par b {comp BotonIniciarSesion::b:p::p, comp BotonRegistrar::b:p::p}, space :::p}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -29,7 +29,7 @@ new FormModel {
 				"font": #Font0
 				"horizontalAlignment": 0
 			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "PasswdInput"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -46,7 +46,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 300, 300 )
+			"size": new java.awt.Dimension( 330, 315 )
 		} )
 	}
 }
