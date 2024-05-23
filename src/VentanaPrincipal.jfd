@@ -4,11 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp menuBar::::1055:x, seq {space :p:29:p, par t {comp button1:::p:234:p, par l:t {seq {comp RPS:::p::p, space :::p, comp label1:::p::p}, seq {comp clicksLbl:::p:94:p, space :::p, comp counterLabel:::p:95:p}}}, par l {seq l {space :p:126:p, comp Mejoras:::p::p}, seq l {space :p:55:p, comp barritaPrice:::p::p, space u:::p, comp barritaEnergetica:::p::p, space :::p, comp numBarritas:::p::p}, seq l {space :p:49:p, comp batidoPrice:::p::p, space u:::p, comp batidoProteico:::p::p, space :::p, comp numBatidos:::p::p}}, space ::566:x}}"
-			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, space :p:26:p, par b {comp counterLabel::b:p:56:p, comp clicksLbl::b:p:56:p, comp Mejoras::b:p::p}, space :::p, par l {seq l {par b {comp barritaEnergetica::b:p::p, comp numBarritas::b:p::p, comp barritaPrice::b:p::p}, space s:::p, par b {comp batidoProteico::b:p::p, comp batidoPrice::b:p::p, comp numBatidos::b:p::p}}, seq l {par b {comp RPS::b:p::p, comp label1::b:p::p}, space :p:51:p, comp button1:::p:139:p}}, space ::300:x}}"
+			"$horizontalGroup": "par l {comp menuBar:::::x, seq {space :p:56:p, comp RPS:::p::p, space s:::p, comp label1:::p:112:p, space ::739:x}, seq l {space :p:38:p, par l {seq {comp clicksLbl:::p::p, space u:::p, comp counterLabel:::p:271:p}, comp button1:::p:234:p, comp Peso::l:p:271:p, comp MejorasBarra::l:p:126:p}, space ::58:x, par l {seq t {par t {comp batidoProteico::t:p:271:p, comp barritaEnergetica:::p:271:p, comp creatina::t:p:271:p, comp testosterona:::p:271:p}, space u:::p, par l {comp numCreatina:::p::p, comp numBatidos::l:p::p, comp numBarritas:::p::p, comp numTestosterona::l:p::p}, space :p:76:p}, seq t {comp Mejoras:::p::p, space :p:172:p}}}}"
+			"$verticalGroup": "par l {seq {comp menuBar:::p:35:p, par l {seq l {par l {seq l {space u:::p, comp Mejoras:::p::p, space :p:12:p, comp barritaEnergetica:::p::p, space :p:27:p, comp batidoProteico:::p::p, space :p:33:p, comp creatina:::p::p}, seq l {space :p:89:p, comp numBarritas:::p::p, space :p:48:p, comp numBatidos:::p::p, space :p:55:p, comp numCreatina:::p::p}}, par l {seq {space :p:30:p, comp testosterona:::p::p}, seq l {space :p:40:p, comp numTestosterona:::p::p}}}, seq l {space :p:21:p, par b {comp clicksLbl::b:p:56:p, comp counterLabel::b:p:56:p}, space :::p, par b {comp RPS::b:p::p, comp label1::b:p::p}, space :p:13:p, comp button1:::p:139:p, space :p:40:p, comp MejorasBarra:::p::p, space s:::p, comp Peso:::p::p}}, space ::95:x}}"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 55, 81, 132, 255 )
+			"background": new java.awt.Color( 26, 70, 84, 255 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "Press Banca"
@@ -18,6 +18,7 @@ new FormModel {
 				"focusPainted": false
 				"contentAreaFilled": false
 				"pressedIcon": new com.jformdesigner.model.SwingIcon( 0, "/assets/press2.png" )
+				"cursor": &Cursor0 new java.awt.Cursor( 12 )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clickerBtn"
 				}
@@ -25,8 +26,9 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "clicksLbl"
-				"text": "REPS:"
-				"font": new java.awt.Font( "JetBrains Mono", 0, 20 )
+				"text": "REPETICIONES:"
+				"font": new java.awt.Font( "JetBrains Mono", 0, 26 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "clicksLbl"
 				}
@@ -34,7 +36,8 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "counterLabel"
 				"text": "0"
-				"font": new java.awt.Font( "JetBrains Mono", 0, 18 )
+				"font": new java.awt.Font( "JetBrains Mono", 0, 24 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				auxiliary() {
 					"JavaCodeGenerator.variableName": "counterLbl"
 				}
@@ -45,65 +48,149 @@ new FormModel {
 					name: "menuBarItem"
 					"text": "File"
 					"font": new java.awt.Font( "JetBrains Mono", 0, 15 )
+					"cursor": #Cursor0
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem1"
+						name: "menuItemSave"
 						"text": "Guardar"
 						"font": new java.awt.Font( "JetBrains Mono", 0, 14 )
+						"cursor": #Cursor0
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItemSaveMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem2"
+						name: "menuItemLoad"
 						"text": "Cargar"
 						"font": new java.awt.Font( "JetBrains Mono", 0, 14 )
+						"cursor": #Cursor0
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "load", true ) )
 					} )
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "barritaEnergetica"
-				"text": "Barrita Energetica"
+				"text": "<html><b>BARRITA ENERGETICA</b><br>10 repes</html>"
 				"enabled": false
+				"toolTipText": "Aumenta el valor de tus RPS en 0,5"
+				"font": new java.awt.Font( "Inter", 0, 18 )
+				"background": new java.awt.Color( 35, 35, 35, 255 )
+				"foreground": sfield java.awt.Color green
+				"borderPainted": false
+				"margin": new java.awt.Insets( 0, 40, 0, 0 )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"horizontalAlignment": 10
+				"cursor": #Cursor0
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "barritaEnergeticaMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "Mejoras"
 				"text": "Mejoras"
-				"font": new java.awt.Font( "JetBrains Mono", 2, 16 )
+				"font": new java.awt.Font( "JetBrains Mono", 1, 40 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "numBarritas"
 				"text": "x0"
+				"font": new java.awt.Font( "Inter", 0, 20 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "batidoProteico"
-				"text": "Batido Proteico"
+				"text": "<html><b>BATIDO PROTEICO</b><br>100 repes</html>"
 				"enabled": false
 				"actionCommand": "Batido Proteico"
+				"font": &Font0 new java.awt.Font( "Inter", 0, 18 )
+				"foreground": sfield java.awt.Color green
+				"toolTipText": "Aumenta el valor de tus RPS en 1"
+				"background": new java.awt.Color( 35, 35, 35, 255 )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": new java.awt.Insets( 0, 40, 0, 0 )
+				"horizontalAlignment": 10
+				"cursor": #Cursor0
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "batidoProteicoMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "numBatidos"
 				"text": "x0"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "barritaPrice"
-				"text": "10"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "batidoPrice"
-				"text": "100"
+				"font": &Font1 new java.awt.Font( "Inter", 0, 20 )
+				"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "RPS"
 				"text": "RPS:"
-				"font": new java.awt.Font( "JetBrains Mono", 0, 11 )
+				"font": new java.awt.Font( "JetBrains Mono", 0, 18 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "0"
-				"font": new java.awt.Font( "JetBrains Mono", 0, 11 )
+				"font": new java.awt.Font( "JetBrains Mono", 0, 16 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "creatina"
+				"text": "<html><b>CREATINA</b><br>1000 repes</html>"
+				"enabled": false
+				"actionCommand": "Batido Proteico"
+				"font": #Font0
+				"foreground": sfield java.awt.Color green
+				"toolTipText": "Aumenta el valor de tus RPS en 2"
+				"background": new java.awt.Color( 35, 35, 35, 255 )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": &Insets0 new java.awt.Insets( 0, 40, 0, 0 )
+				"horizontalAlignment": 10
+				"cursor": #Cursor0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "creatinaMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "numCreatina"
+				"text": "x0"
+				"font": #Font1
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "testosterona"
+				"text": "<html><b>TESTOSTERONA</b><br>10.000 repes</html>"
+				"enabled": false
+				"actionCommand": "Batido Proteico"
+				"font": #Font0
+				"foreground": sfield java.awt.Color green
+				"toolTipText": "Aumenta el valor de tus RPS en 4"
+				"background": &Color1 new java.awt.Color( 35, 35, 35, 255 )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": #Insets0
+				"horizontalAlignment": 10
+				"cursor": #Cursor0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "testosteronaMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "numTestosterona"
+				"text": "x0"
+				"font": #Font1
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "MejorasBarra"
+				"text": "Mejoras Barra"
+				"font": new java.awt.Font( "JetBrains Mono", 1, 14 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "Peso"
+				"text": "<html><b>Pesa 5Kg</b><br>200 repes</html>"
+				"enabled": false
+				"actionCommand": "Batido Proteico"
+				"font": #Font0
+				"foreground": sfield java.awt.Color green
+				"toolTipText": "Mientras mas peso mas repeticiones consigues por click"
+				"background": #Color1
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": #Insets0
+				"horizontalAlignment": 10
+				"cursor": #Cursor0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "PesoMouseClicked", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 1055, 630 )
+			"size": new java.awt.Dimension( 970, 515 )
 		} )
 	}
 }

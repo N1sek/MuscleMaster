@@ -1,9 +1,12 @@
 public class Click {
-    private double clickValue = 1.0;
-    private double clickMultiplier = 1.0;
-    private double cps = 0;
+    private double clickValue;
+    private double clickMultiplier;
+    private double cps;
 
     public Click() {
+        this.clickValue = 1.0;
+        this.clickMultiplier = 1.0;
+        this.cps = 0;
     }
 
     public double click() {
@@ -33,7 +36,5 @@ public class Click {
     public void setClickMultiplier(double clickMultiplier) {
         this.clickMultiplier = clickMultiplier;
     }
-
-
-
 }
+
